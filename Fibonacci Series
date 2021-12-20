@@ -1,0 +1,43 @@
+# Dynamic Programing of Fibonacci Number.
+
+def fibonacci(n):
+    f = [0, 1]
+    for i in range(2, n+1):
+        f.append(f[i-1] + f[i-2])
+    return f[n]
+print(fibonacci(9))
+
+
+# Iterative Approach 
+def fibonacci(n):
+    a = 0
+    b = 1
+    if n < 0:
+        print("Incorrect input")
+    elif n == 0:
+        return a
+    elif n == 1:
+        return b
+    else:
+        for i in range(2,n+1):
+            c = a + b
+            a = b
+            b = c
+        return b
+print(fibonacci(9))
+
+
+#Recursive approach
+
+def recur_fibo(n):  
+   if n <= 1:  
+       return n  
+   else:  
+       return(recur_fibo(n-1) + recur_fibo(n-2))  
+nterms = int(input("How many terms? "))  
+if nterms <= 0:  
+   print("Plese enter a positive integer")  
+else:  
+   print("Fibonacci sequence:")  
+   for i in range(nterms):  
+       print(recur_fibo(i))  
