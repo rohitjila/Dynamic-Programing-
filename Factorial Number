@@ -1,0 +1,43 @@
+# Factorial Program 
+# Dynamic Programic Soltion Bottom Down Approach
+
+
+def fact(n):
+    arr=[0 for i in range(n+1)]
+    arr[0]=1
+    arr[1]=1
+    for i in range(2,n+1):
+        arr[i]=i*arr[i-1]
+    return arr[n]
+        
+t=int(input())
+for i in range(t):
+    n=int(input())
+    print(fact(n))
+    
+ 
+# Recursive Approach 
+
+def fact(n):
+    if (n <= 1):
+        return 1
+    else:
+        return (fact(n-1)*n)
+        
+t=int(input())
+for i in range(t):
+    n=int(input())
+    print(fact(n))
+    
+    
+# Iterative Approach :
+def fact(n):
+    fact=1
+    for i in range(2,n+1):
+        fact=fact*i
+    return fact
+        
+t=int(input())
+for i in range(t):
+    n=int(input())
+    print(fact(n))
