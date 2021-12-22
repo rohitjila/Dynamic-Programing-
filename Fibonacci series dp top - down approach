@@ -1,0 +1,15 @@
+# Fibonacci top - down approach
+# Dpnamic programing
+
+
+def fibonacci(memo,n):
+    if (memo[n] == 0):
+        if (n < 2):
+            memo[n]=n
+            
+        else:
+            left=fibonacci(memo,n-1)
+            right=fibonacci(memo,n-2)
+            memo[n]=left+right
+            
+    return memo[n]
