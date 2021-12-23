@@ -1,0 +1,73 @@
+class Solution:
+    def tribonacci(self, n: int) -> int:
+        
+        #top up approach 
+        memo=[0 for i in range(n+1)]
+        return self.solve(memo,n)
+    
+    
+    def solve(self,memo,n):
+        if (memo[n] == 0):
+            if (n < 3):
+                if (n == 0):
+                    memo[n]=n
+                else:
+                    memo[n]=1
+
+            else:
+                left=self.solve(memo,n-1)
+                right=self.solve(memo,n-2)
+                center=self.solve(memo,n-3)
+                memo[n]=left+right+center
+
+        return memo[n]
+
+        
+        
+        
+        
+        
+        
+        
+        #bottom up approach
+#         if (n == 0 ):
+#             return 0
+#         elif (n == 1 or n == 2):
+#             return 1
+#         if (n > 2):
+#             tabular=[0]*(n+1)
+#             tabular[0]=0
+#             tabular[1]=1
+#             tabular[2]=1
+        
+#         for i in range(3,n+1):
+#             tabular[i]=tabular[i-1]+tabular[i-2]+tabular[i-3]
+#         return tabular[n]
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if (n == 0):
+#             return 0
+#         if (n == 1):
+#             return 1
+#         if (n == 2):
+#             return 1
+        
+#         else:
+#             return self.tribonacci(n-1)+self.tribonacci(n-2)+self.tribonacci(n-3)
