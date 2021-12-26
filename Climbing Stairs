@@ -1,0 +1,14 @@
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        memo=[0]*(n+1)
+        return self.solve(memo,n)
+    def solve(self,memo,n):
+        if (memo[n] == 0):
+            if (n < 3 and n != 0):
+                memo[n]=n
+            else:
+                left=self.solve(memo,n-1)
+                right=self.solve(memo,n-2)
+                memo[n]=left+right
+        return memo[n]
+                
