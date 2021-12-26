@@ -1,0 +1,22 @@
+    def help(self,i,cost,dp):
+        if (i >= len(cost)): return 0
+        if (dp[i] != -1): return dp[i]
+        left=self.help(i+1,cost,dp)
+        right=self.help(i+2,cost,dp)
+        dp[i] = min(left,right)+cost[i]
+        return dp[i]
+        
+            
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        #recursive Way
+        #top down
+        dp=[-1]*1001
+        return min(self.help(0,cost,dp),self.help(1,cost,dp))
+        
+        
+        #bottom -up approach 
+        cost.append(0)
+        for i in range(len(cost) - 3,-1,-1):
+            cost[i]+=min(cost[i+1],cost[i+2])
+        return min(cost[0] ,cost[1])
+    
