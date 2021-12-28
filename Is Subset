@@ -1,0 +1,46 @@
+# Recursive Sum
+def isSubsetSum(set, n, sum):
+	if (sum == 0):
+		return True
+	if (n == 0):
+		return False
+
+	if (set[n - 1] > sum):
+		return isSubsetSum(set, n - 1, sum)
+		
+	return isSubsetSum(
+		set, n-1, sum) or isSubsetSum(
+		set, n-1, sum-set[n-1])
+
+
+set = [3, 34, 4, 12, 5, 2]
+sum = 9
+n = len(set)
+if (isSubsetSum(set, n, sum) == True):
+	print("Found a subset with given sum")
+else:
+	print("No subset with given sum")
+
+
+#dynamic programing
+def isSubset(arr,s,n):
+    dp=[[False for i in range(s+1)] for i in range(n+1)]
+    for i in range(n+1):
+        for j in range(s+1):
+            if (i == 0):
+                dp[i][j] = False
+            if (j == 0):
+                dp[i][j] = True
+                
+    for i in range(1,n+1):
+        for j in range(1,s+1):
+            if (arr[i-1] <= s):
+                dp[i][j] = (dp[i-1][j-arr[i-1]] or dp[i-1][j])
+            else:
+                dp[i][j] = dp[i-1][j]
+    return dp[n][s]
+                
+arr=[2,3,7,8,10]
+s=11
+n=len(arr)
+print(isSubset(arr,s,n))
