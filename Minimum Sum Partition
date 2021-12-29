@@ -1,0 +1,39 @@
+#User function Template for python3
+class Solution:
+	def minDifference(self, arr, n):
+		Range=sum(arr)
+		ans=self.minSubsets(arr,n,Range)
+		res=[0]*len(ans)
+		for i in range(len(ans)):
+		    if (ans[i] == True):
+		        res[i]=i
+		mn=9999999
+		for i in range(len(res)):
+		    mn=min(mn,(Range-2*res[i]))
+		return mn
+		    
+		    
+    def minSubsets(self,arr,n,Range):
+        dp=[[False for i in range(Range+1)] for i in range(n+1)]
+        for i in range(n+1):
+            for j in range(Range+1):
+                if (i == 0):
+                    dp[i][j] = False
+                if (j == 0):
+                    dp[i][j] = True
+                    
+        for i in range(1,n+1):
+            for j in range(1,Range+1):
+                if(arr[i-1] <= j):
+                    dp[i][j] = (dp[i-1][j-arr[i-1]] or dp[i-1][j])
+                else:
+                    dp[i][j] = dp[i-1][j]
+         
+         
+        ans=[False]*(Range//2+1)           
+        for i in range(n+1):
+            for j in range(Range//2+1):
+                if (i == n):
+                    if (dp[i][j] == True):
+                        ans[j]=dp[i][j]
+        return ans
