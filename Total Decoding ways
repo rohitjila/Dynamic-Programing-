@@ -1,0 +1,18 @@
+class Solution:
+	def CountWays(self, s):
+	    if str[0] == '0' :
+				return 0
+		n = len(str)
+		mod = 1e9 + 7
+		dp = [0 for i in range(n+1)]
+		dp[n] = 1
+		for i in range(1,n):
+		    if str[i] == '0' and str[i-1] > '2' :
+		        return 0
+		for i in range(n-1,-1,-1):
+		    if s[i] != '0':  # Single digit
+                dp[i] = dp[i+1]
+            if i+1 < n and (s[i] == '1' or s[i] == '2' and s[i+1] <= '6'):  # Two digits
+                dp[i] += dp[i+2]
+			dp[i] %= int(mod)
+		return dp[0]
