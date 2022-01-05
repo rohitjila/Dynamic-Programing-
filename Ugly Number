@@ -1,0 +1,23 @@
+#User function Template for python3
+class Solution:
+	def getNthUglyNo(self,n):
+	    dp=[0 for i in range(n+1)]
+	    dp[1] = 1
+	    p2=1
+	    p3=1
+	    p5=1
+	    for i in range(2,n+1):
+	        f1 = 2 * dp[p2]
+	        f2 = 3 * dp[p3]
+	        f3 = 5 * dp[p5] 
+	        
+	        mn=min(f1 , min(f2,f3))
+	        dp[i]=mn
+	        
+	        if(mn == f1):
+	            p2+=1
+	        if (mn == f2):
+	            p3+=1
+	        if (mn == f3):
+	            p5+=1
+	    return dp[n]
