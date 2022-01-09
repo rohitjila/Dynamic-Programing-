@@ -1,0 +1,18 @@
+def longestSubdsequence(x,y,n,m):
+    if (n == 0 or m == 0):
+        return 0
+        
+    if (x[n-1] == y[n-1]):
+        return 1+longestSubdsequence(x,y,n-1,m-1)
+    
+    else:
+        return max((longestSubdsequence(x,y,n-1,m),
+        longestSubdsequence(x,y,m,n-1)))
+        
+    
+    
+x="abcdgh"
+y="abedfhr"
+n=len(x)
+m=len(y)
+print(longestSubdsequence(x,y,n,m))
