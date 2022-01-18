@@ -1,0 +1,21 @@
+#User function Template for python3
+from collections import defaultdict
+class Solution:
+    def countPairs(self, n, x, arr): 
+        ans=0
+        mp=defaultdict(lambda : 0)
+        temp=str(x)
+        for i in range(n):
+            mp[str(arr[i])]+=1
+        for i in range(len(temp)-1):
+            p=temp[0:i+1]
+            q=temp[i+1:]
+            # print(p)
+            # print(q)
+            f1=mp[p]
+            f2=mp[q]
+            if (p == q):
+                ans+=(f1*(f2-1))
+            else:
+                ans+=f1*f2
+        return ans
