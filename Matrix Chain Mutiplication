@@ -1,0 +1,17 @@
+import sys
+class Solution:
+    def matrixMultiplication(self, N, arr):
+        i=1
+        j=N-1
+        dp=[[-1 for i in range(100)] for i in range(100)]
+        ans=self.solve(N,arr,i,j,dp)
+        return ans
+        
+    def solve(self,N,arr,i,j,dp):
+        if (i == j):
+            return 0
+        if (dp[i][j] != -1): return dp[i][j]
+        dp[i][j] = sys.maxsize
+        for k in range(i,j):
+            dp[i][j] = min(dp[i][j], self.solve(N,arr,i,k,dp)+self.solve(N,arr,k+1,j,dp) + (arr[i-1]*arr[k]*arr[j]))
+        return dp[i][j] 
