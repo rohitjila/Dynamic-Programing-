@@ -1,0 +1,38 @@
+class Solution:
+    def isPal(self,string,i,j):
+        if (i == j):
+            return True
+        if (i > j):
+            return True
+        while(i < j):
+            if (string[i] != string[j]):
+                return False
+            i+=1
+            j-=1
+        return True
+    def solve(self,string,i,j,dp):
+        ans=1e9
+        if (i >= j):
+            return 0
+        if (self.isPal(string,i,j) == True):
+            return 0
+        if (dp[i][j] != -1): return dp[i][j]
+        for k in range(i,j):
+            if (dp[i][k] != -1):
+                left=dp[i][k]
+            else:
+                left=self.solve(string,i,k,dp)
+            if (dp[k+1][j] != -1):
+                right=dp[k+1][j]
+            else:
+                right=self.solve(string,k+1,j,dp)    
+                
+            temp=1 + left + right
+            ans=min(temp,ans)
+        dp[i][j] = ans
+        return dp[i][j]
+    def palindromicPartition(self, string):
+        i=0
+        j=len(string)-1
+        dp=[[-1 for i in range(501)] for i in range(501)]
+        return self.solve(string,i,j,dp)
