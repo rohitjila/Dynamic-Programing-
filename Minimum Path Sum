@@ -1,0 +1,43 @@
+class Solution:
+    # def solve(self,i,j,grid,dp):
+#         global INT_MAX
+#         if (i < 0 or j < 0 ): return INT_MAX
+#         if (i == 0 and j == 0): return grid[0][0]
+#         if (dp[i][j] != -1): return dp[i][j]
+         
+#         up=grid[i][j] + self.solve(i-1,j,grid,dp)
+#         left=grid[i][j] + self.solve(i,j-1,grid,dp)
+#         dp[i][j] = min(up,left)
+#         return dp[i][j]
+        
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+        dp=[[0 for i in range(n+1)] for i in range(m+1)]
+        for i in range(m):
+            for j in range(n):
+                if (i == 0 and j == 0):
+                    dp[0][0] = grid[0][0]
+                else:
+                    left=grid[i][j]
+                    if (j > 0):
+                        left+=dp[i][j-1]
+                    else:
+                        left+=1e9
+                    up=grid[i][j]
+                    if (i > 0):
+                        up+=dp[i-1][j]
+                    else:
+                        up+=1e9
+                    dp[i][j]=min(up,left)
+        return dp[m-1][n-1]
+                    
+        
+        
+        
+        
+        # global INT_MAX
+        # INT_MAX= 2**31 - 1
+        # i=m-1
+        # j=n-1
+        # return self.solve(i,j,grid,dp)
